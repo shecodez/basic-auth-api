@@ -1,0 +1,39 @@
+
+# @name register
+
+POST http://localhost:3001/api/register HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username":"testuser",
+  "email":"test@example.com",
+  "password":"testpassword"
+}
+
+###
+
+# @name login
+
+POST http://localhost:3001/api/login HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "email":"test@example.com",
+  "password":"testpassword"
+}
+
+###
+
+@jwt = {{login.token}}
+
+###
+
+# @name logged_in_user_info
+GET http://localhost:3001/api/@me HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{jwt}}
+
+
+###
